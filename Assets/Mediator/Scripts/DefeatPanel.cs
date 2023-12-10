@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class DefeatPanel : MonoBehaviour
 {
@@ -17,7 +18,8 @@ public class DefeatPanel : MonoBehaviour
         _restart.onClick.RemoveListener(OnRestartClick);
     }
 
-    public void Initialize(GameplayMediator gameplayMediator)
+    [Inject]
+    public void Constuct(GameplayMediator gameplayMediator)
     {
         _mediator = gameplayMediator;
     }

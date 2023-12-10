@@ -1,9 +1,9 @@
 using UnityEngine;
+using Zenject;
 
 public class GameplayMediator : MonoBehaviour
 {
-    [SerializeField] private DefeatPanel _defeatPanel;
-
+    private DefeatPanel _defeatPanel;
     private Level _level;
 
     private void OnDisable()
@@ -11,8 +11,10 @@ public class GameplayMediator : MonoBehaviour
         _level.Defeat -= OnLevelDefeat;
     }
 
-    public void Initialize(Level level)
+    [Inject]
+    public void Construct(Level level,DefeatPanel defeatPanel)
     {
+        _defeatPanel = defeatPanel;
         _level = level;
         _level.Defeat += OnLevelDefeat;
     }

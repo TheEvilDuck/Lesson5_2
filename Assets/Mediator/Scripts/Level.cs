@@ -1,26 +1,29 @@
 using System;
 using UnityEngine;
+using Zenject;
 
-public class Level
+public class Level: IInitializable
 {
     public event Action Defeat;
 
     public void Start()
     {
-        //Логика старта игры
         Debug.Log("Start level");
     }
 
     public void Restart()
     {
-        //Логика очистки уровни
         Start();
     }
 
     public void OnDefeat()
     {
-        //логика остановки игры
         Defeat?.Invoke();
+    }
+
+    public void Initialize()
+    {
+        Start();
     }
 }
 
